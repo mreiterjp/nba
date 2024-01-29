@@ -12,15 +12,15 @@ To obtain information about the players, it is advisable to use https://app.ball
 
 ## Application Requirements:
 
--Programmed in Kotlin in MVI or MVVM architecture
--Utilizes clean code principles
--Uses Retrofit for network communication
--UI in Android Jetpack Compose
--Processes images in Glide, other libraries/APIs for obtaining random images can be used at your own
+- Programmed in Kotlin in MVI or MVVM architecture
+- Utilizes clean code principles
+- Uses Retrofit for network communication
+- UI in Android Jetpack Compose
+- Processes images in Glide, other libraries/APIs for obtaining random images can be used at your own
 discretion. (e.g., https://picsum.photos/)
 
 ## To Be Added
 
--App theme
--Proper image source for teams
--Proper Error handling
+- App theme
+- Proper image source for teams
+- Proper Error handling
