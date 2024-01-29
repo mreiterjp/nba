@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Nba</string>
+    <string name="back_button">Back</string>
+    <string name="player_detail">Player detail</string>
+    <string name="players_list">Players list</string>
+    <string name="team_detail">Team detail</string>
+    <string name="loading_data">Fetching data from server</string>
+    <string name="retry">Retry</string>
+</resources>
