@@ -6,14 +6,29 @@ import com.example.nba.domain.entity.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+/**
+ * A repository class that provides access to team data from the NBA API.
+ *
+ * @param teamApi The API client used to fetch team data.
+ */
 class TeamRepository(
     private val teamApi: TeamApi,
 ) : ITeamRepository {
+    /**
+     * Retrieves a team by ID.
+     *
+     * @param id The ID of the team to retrieve.
+     * @return A `Flow` object emitting the corresponding `TeamEntity` object.
+     */
     override suspend fun getTeam(id: Int): Flow<TeamEntity> {
         return flow {
-            emit(
-                teamApi.getTeam(id).toEntity(),
-            )
+            // Fetch the team from the API for the specified ID
+            val response = teamApi.getTeam(id)
+
+            // Convert the API response to a `TeamEntity` object
+            val teamEntity = response.toEntity()
+
+            emit(teamEntity)
         }
     }
 }

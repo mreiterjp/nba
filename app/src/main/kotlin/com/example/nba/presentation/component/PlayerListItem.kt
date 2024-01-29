@@ -29,11 +29,18 @@ import com.example.nba.R
 import com.example.nba.domain.entity.PlayerEntity
 
 @OptIn(ExperimentalGlideComposeApi::class)
+/**
+ * A composable function that displays a list item for a player.
+ *
+ * @param player The player to display.
+ * @param onClick A callback function to execute when the player's item is clicked.
+ */
 @Composable
 fun PlayerListItem(
     player: PlayerEntity,
     onClick: () -> Unit,
 ) {
+    // Create a card to wrap the player's information
     Card(
         modifier =
             Modifier
@@ -50,6 +57,7 @@ fun PlayerListItem(
                 defaultElevation = 8.dp,
             ),
     ) {
+        // Create a row to arrange the player's avatar and information
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier =
@@ -58,6 +66,7 @@ fun PlayerListItem(
                     .fillMaxWidth()
                     .padding(8.dp),
         ) {
+            // Display the player's avatar
             GlideImage(
                 model = player.avatarUrl,
                 contentDescription = player.firstName + " " + player.lastName,
@@ -66,8 +75,11 @@ fun PlayerListItem(
                 transition = CrossFade,
                 modifier = Modifier.size(60.dp),
             )
+
+            // Display the player's information, including name, position, and team
             Spacer(modifier = Modifier.width(8.dp))
             Column {
+                // Display the player's full name
                 Text(
                     text = "${player.firstName} ${player.lastName}",
                     style =
@@ -75,6 +87,8 @@ fun PlayerListItem(
                             color = Color.Black,
                         ),
                 )
+
+                // Display the player's position
                 Text(
                     text = "Position: ${player.position}",
                     style =
@@ -82,13 +96,17 @@ fun PlayerListItem(
                             color = Color.Black,
                         ),
                 )
-                Text(
-                    text = "Team: ${player.teamEntity?.name ?: ""}",
-                    style =
-                        MaterialTheme.typography.bodyMedium.copy(
-                            color = Color.Black,
-                        ),
-                )
+
+                // Display the player's team name if it exists
+                if (player.teamEntity != null) {
+                    Text(
+                        text = "Team: ${player.teamEntity?.name ?: ""}",
+                        style =
+                            MaterialTheme.typography.bodyMedium.copy(
+                                color = Color.Black,
+                            ),
+                    )
+                }
             }
         }
     }

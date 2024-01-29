@@ -6,7 +6,7 @@ import com.example.nba.domain.usecase.GetTeamUseCase
 import org.koin.dsl.module
 
 /**
- * Koin module holding API definitions.
+ * Koin module holding use case definitions.
  */
 val useCaseModule =
     module {

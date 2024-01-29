@@ -21,12 +21,19 @@ import com.bumptech.glide.integration.compose.placeholder
 import com.example.nba.R
 import com.example.nba.domain.entity.PlayerEntity
 
+/**
+ * A composable function that displays a detailed item for a player.
+ *
+ * @param player The player to display.
+ * @param onClick A callback function to execute when the player's item is clicked.
+ */
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun PlayerDetailItem(
     player: PlayerEntity,
     onClick: () -> Unit,
 ) {
+    // Create a column layout to arrange the player's information
     Column(
         modifier =
             Modifier
@@ -34,16 +41,20 @@ fun PlayerDetailItem(
                 .fillMaxHeight()
                 .padding(8.dp),
     ) {
+        // Display the player's full name
         Text(
             text = player.firstName + " " + player.lastName,
             style = MaterialTheme.typography.displaySmall,
         )
+
+        // Display the player's avatar
         Row(
-            // verticalAlignment = Alignment.CenterVertically,
+            // Align the avatar and additional information vertically
             modifier =
                 Modifier
                     .fillMaxWidth(),
         ) {
+            // Display the player's avatar
             GlideImage(
                 model = player.avatarUrl,
                 contentDescription = player.firstName + " " + player.lastName,
@@ -52,20 +63,30 @@ fun PlayerDetailItem(
                 transition = CrossFade,
                 modifier = Modifier.size(60.dp),
             )
+
+            // Display additional information about the player, including position, height, weight, and team
             Column(modifier = Modifier.padding(8.dp, 0.dp, 8.dp, 0.dp)) {
+                // Display the player's position
                 Text(
                     text = "Position: ${player.position}",
                     style = MaterialTheme.typography.bodyLarge,
                 )
+
+                // Display the player's height
                 Text(
                     text = "Height: ${player.heightFeet}' ${player.heightInches}\"",
                     style = MaterialTheme.typography.bodyLarge,
                 )
+
+                // Display the player's weight
                 Text(
                     text = "Weight: ${player.weightPounds} lbs",
                     style = MaterialTheme.typography.bodyLarge,
                 )
+
+                // Display the player's team name if it exists
                 if (player.teamEntity != null) {
+                    // Underline and color the team name to indicate it's a clickable link
                     Text(
                         text = "Team: ${player.teamEntity.name}",
                         style =

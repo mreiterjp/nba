@@ -4,10 +4,13 @@
 
 The goal of the application is to display a list of NBA players (with their first name, last name,
 position, and the club they play for).
+
 Once the user reaches the end of the list, the list is loaded with another 35 records. By clicking
 on a selected player, a detail with all the information is displayed.
+
 From the player’s detail, it is also possible to click through to the detail of the club in which he
 plays with the available information.
+
 To obtain information about the players, it is advisable to use https://app.balldontlie.io/.
 
 ## Application Requirements:
