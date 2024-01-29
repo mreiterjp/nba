@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class PlayerViewModel(
     private val getPlayerUseCase: GetPlayerUseCase,
-    private val id: Int
+    private val id: Int,
 ) : ViewModel() {
     private val _playerState: MutableStateFlow<PlayerEntity> =
         MutableStateFlow(value = PlayerEntity.generateFakePlayerEntity(-1))
@@ -40,7 +40,3 @@ class PlayerViewModel(
 sealed class PlayerEvent {
     object Init : PlayerEvent()
 }
-
-    
-
-

@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class TeamViewModel(
     private val getTeamUseCase: GetTeamUseCase,
-    private val id: Int
+    private val id: Int,
 ) : ViewModel() {
     private val _teamState: MutableStateFlow<TeamEntity> =
         MutableStateFlow(value = TeamEntity.generateFakeTeamEntity(-1))
@@ -40,4 +40,3 @@ class TeamViewModel(
 sealed class TeamEvent {
     object Init : TeamEvent()
 }
-

@@ -21,7 +21,7 @@ data class TeamEntity(
                 conference = listOf("East", "West").random(),
                 division = "Division$id",
                 fullName = "Team Full Name: $id",
-                name = "name $id"
+                name = "name $id",
             )
         }
     }
@@ -35,7 +35,6 @@ fun Team.toEntity(): TeamEntity {
         conference = this.conference,
         division = this.division,
         fullName = this.fullName,
-        name = this.name
+        name = this.name,
     )
 }
-

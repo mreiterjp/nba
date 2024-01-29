@@ -3,20 +3,20 @@ package com.example.nba.data.model
 import com.google.gson.annotations.SerializedName
 
 data class Player(
-     @SerializedName("id")
+    @SerializedName("id")
     val id: Int,
-     @SerializedName("first_name")
+    @SerializedName("first_name")
     val firstName: String?,
-     @SerializedName("last_name")
+    @SerializedName("last_name")
     val lastName: String?,
-     @SerializedName("position")
+    @SerializedName("position")
     val position: String?,
-     @SerializedName("height_feet")
+    @SerializedName("height_feet")
     val heightFeet: Int?,
-     @SerializedName("height_inches")
+    @SerializedName("height_inches")
     val heightInches: Int?,
-     @SerializedName("weight_pounds")
+    @SerializedName("weight_pounds")
     val weightPounds: Int?,
-     @SerializedName("team")
+    @SerializedName("team")
     val team: Team?,
 )

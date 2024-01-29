@@ -25,66 +25,62 @@ import com.example.nba.domain.entity.PlayerEntity
 @Composable
 fun PlayerDetailItem(
     player: PlayerEntity,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .padding(8.dp)
-        ,
-
-        ) {
-
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .padding(8.dp),
+    ) {
         Text(
             text = player.firstName + " " + player.lastName,
             style = MaterialTheme.typography.displaySmall,
         )
         Row(
-            //verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth(),
-
-            ) {
-
+            // verticalAlignment = Alignment.CenterVertically,
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
+        ) {
             GlideImage(
                 model = player.avatarUrl,
                 contentDescription = player.firstName + " " + player.lastName,
                 loading = placeholder(R.drawable.ic_avatar_placeholder),
                 failure = placeholder(R.drawable.ic_avatar_placeholder),
                 transition = CrossFade,
-                modifier = Modifier.size(60.dp)
+                modifier = Modifier.size(60.dp),
             )
-              Column(modifier = Modifier.padding(8.dp, 0.dp,8.dp,0.dp,)) {
-
+            Column(modifier = Modifier.padding(8.dp, 0.dp, 8.dp, 0.dp)) {
                 Text(
                     text = "Position: ${player.position}",
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
                 )
                 Text(
                     text = "Height: ${player.heightFeet}' ${player.heightInches}\"",
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
                 )
                 Text(
                     text = "Weight: ${player.weightPounds} lbs",
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
                 )
                 if (player.teamEntity != null) {
                     Text(
                         text = "Team: ${player.teamEntity.name}",
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            textDecoration = TextDecoration.Underline,
-                            color = MaterialTheme.colorScheme.primary
-                        ),
-                        modifier = Modifier
-                            .clickable {
-                             onClick()
-                        }
+                        style =
+                            MaterialTheme.typography.bodyLarge.copy(
+                                textDecoration = TextDecoration.Underline,
+                                color = MaterialTheme.colorScheme.primary,
+                            ),
+                        modifier =
+                            Modifier
+                                .clickable {
+                                    onClick()
+                                },
                     )
                 }
-
             }
-
         }
     }
 }
@@ -92,8 +88,8 @@ fun PlayerDetailItem(
 @Preview
 @Composable
 fun PreviewPlayerDetailItem() {
-    PlayerDetailItem(player = PlayerEntity.generateFakePlayerEntity(),
-        onClick = {}
+    PlayerDetailItem(
+        player = PlayerEntity.generateFakePlayerEntity(),
+        onClick = {},
     )
 }
-

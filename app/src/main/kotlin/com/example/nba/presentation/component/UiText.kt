@@ -7,9 +7,10 @@ import androidx.compose.ui.res.stringResource
 
 sealed class UiText {
     data class DynamicString(val value: String) : UiText()
+
     class StringResource(
         @StringRes val resId: Int,
-        vararg val args: Any
+        vararg val args: Any,
     ) : UiText()
 
     @Composable

@@ -7,12 +7,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class TeamRepository(
-    private val teamApi: TeamApi
+    private val teamApi: TeamApi,
 ) : ITeamRepository {
     override suspend fun getTeam(id: Int): Flow<TeamEntity> {
         return flow {
             emit(
-                teamApi.getTeam(id).toEntity()
+                teamApi.getTeam(id).toEntity(),
             )
         }
     }

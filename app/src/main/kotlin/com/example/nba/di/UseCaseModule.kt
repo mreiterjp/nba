@@ -8,8 +8,9 @@ import org.koin.dsl.module
 /**
  * Koin module holding API definitions.
  */
-val useCaseModule = module {
-    single { GetPlayerUseCase(playerRepository = get()) }
-    single { GetPlayersUseCase(playerRepository = get()) }
-    single { GetTeamUseCase(teamRepository = get()) }
-}
+val useCaseModule =
+    module {
+        single { GetPlayerUseCase(playerRepository = get()) }
+        single { GetPlayersUseCase(playerRepository = get()) }
+        single { GetTeamUseCase(teamRepository = get()) }
+    }

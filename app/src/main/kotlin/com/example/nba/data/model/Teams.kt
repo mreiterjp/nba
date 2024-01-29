@@ -1,12 +1,10 @@
 package com.example.nba.data.model
 
- 
 import com.google.gson.annotations.SerializedName
 
-
 data class Teams(
-     @SerializedName("data")
+    @SerializedName("data")
     val teams: List<Team>,
-     @SerializedName("meta")
+    @SerializedName("meta")
     val pagingInfo: PagingInfo,
 )

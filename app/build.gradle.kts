@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -26,7 +27,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -70,12 +71,12 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.runtime)
 
-    //navigation
+    // navigation
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    //paging
+    // paging
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.compose)
 
@@ -97,8 +98,22 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
-    //other
+    // other
     implementation(libs.timber)
 
     implementation(libs.glide.compose)
+}
+
+ktlint {
+    debug.set(false)
+    verbose.set(true)
+    android.set(false)
+    coloredOutput.set(true)
+    outputToConsole.set(true)
+    ignoreFailures.set(false)
+    enableExperimentalRules.set(true)
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
 }

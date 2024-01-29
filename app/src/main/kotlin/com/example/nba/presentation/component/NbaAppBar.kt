@@ -25,31 +25,34 @@ fun NbaAppBar(
     currentScreen: NbaScreen,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     TopAppBar(
         title = { Text(stringResource(currentScreen.title)) },
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ),
+        colors =
+            TopAppBarDefaults.mediumTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+            ),
         modifier = modifier,
         navigationIcon = {
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back_button)
+                        contentDescription = stringResource(R.string.back_button),
                     )
                 }
             }
-        }
+        },
     )
 }
 
 @Preview
 @Composable
 fun PreviewNbaAppBar() {
-    NbaAppBar(currentScreen = NbaScreen.Player,
+    NbaAppBar(
+        currentScreen = NbaScreen.Player,
         canNavigateBack = true,
-        navigateUp = {})
+        navigateUp = {},
+    )
 }

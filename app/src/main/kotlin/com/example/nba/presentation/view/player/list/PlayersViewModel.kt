@@ -44,7 +44,3 @@ class PlayersViewModel(
 sealed class PlayersEvent {
     object Init : PlayersEvent()
 }
-
-    
-
-

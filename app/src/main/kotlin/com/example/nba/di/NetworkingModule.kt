@@ -13,21 +13,22 @@ import java.util.concurrent.TimeUnit
  * Koin module holding network communication classes.
  */
 
-val networkingModule = module {
-    single {
-        OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .build()
-    }
+val networkingModule =
+    module {
+        single {
+            OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .build()
+        }
 
-    single<Retrofit> {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(get())
-            .build()
+        single<Retrofit> {
+            Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(get())
+                .build()
+        }
     }
-}

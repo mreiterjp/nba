@@ -9,12 +9,11 @@ import com.example.nba.presentation.navigation.NbaScreen
 @Composable
 fun PlayerScreen(
     navController: NavController,
-    viewModel: PlayerViewModel
+    viewModel: PlayerViewModel,
 ) {
     val player = viewModel.playerState.collectAsState().value
-    PlayerDetailItem(player,
-        { navController.navigate(NbaScreen.Team.name + "/${player.teamEntity?.id ?: -1}") }
+    PlayerDetailItem(
+        player,
+        { navController.navigate(NbaScreen.Team.name + "/${player.teamEntity?.id ?: -1}") },
     )
 }
-
-

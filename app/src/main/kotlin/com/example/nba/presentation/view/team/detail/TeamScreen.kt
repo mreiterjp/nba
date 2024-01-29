@@ -8,10 +8,8 @@ import com.example.nba.presentation.component.TeamDetailItem
 @Composable
 fun TeamScreen(
     navController: NavController,
-    viewModel: TeamViewModel
+    viewModel: TeamViewModel,
 ) {
     val teamItem = viewModel.teamState.collectAsState().value
     TeamDetailItem(teamItem, { })
 }
-
-

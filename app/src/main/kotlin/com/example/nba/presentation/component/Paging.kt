@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.CircularProgressIndicator
-
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -25,13 +24,13 @@ fun PageLoader(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = stringResource(id = R.string.loading_data),
             color = MaterialTheme.colorScheme.primary,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
         )
         CircularProgressIndicator(Modifier.padding(top = 10.dp))
     }
@@ -46,10 +45,11 @@ fun PageLoaderPreview() {
 @Composable
 fun LoadingNextPageItem(modifier: Modifier) {
     CircularProgressIndicator(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-            .wrapContentWidth(Alignment.CenterHorizontally)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .wrapContentWidth(Alignment.CenterHorizontally),
     )
 }
 
@@ -63,18 +63,18 @@ fun LoadingNextPageItemPreview() {
 fun ErrorMessage(
     message: String,
     modifier: Modifier = Modifier,
-    onClickRetry: () -> Unit
+    onClickRetry: () -> Unit,
 ) {
     Row(
         modifier = modifier.padding(10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = message,
             color = MaterialTheme.colorScheme.error,
             modifier = Modifier.weight(1f),
-            maxLines = 2
+            maxLines = 2,
         )
         OutlinedButton(onClick = onClickRetry) {
             Text(text = stringResource(id = R.string.retry))

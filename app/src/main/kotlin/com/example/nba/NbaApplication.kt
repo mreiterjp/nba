@@ -30,14 +30,18 @@ class NbaApplication : Application() {
     }
 
     class KoinTimberLogger : Logger(Level.ERROR) {
-        override fun display(level: Level, msg: MESSAGE) {
-            val newLevel = when (level) {
-                Level.INFO -> android.util.Log.INFO
-                Level.DEBUG -> android.util.Log.DEBUG
-                Level.ERROR -> android.util.Log.ERROR
-                Level.NONE -> android.util.Log.VERBOSE
-                Level.WARNING -> android.util.Log.WARN
-            }
+        override fun display(
+            level: Level,
+            msg: MESSAGE,
+        ) {
+            val newLevel =
+                when (level) {
+                    Level.INFO -> android.util.Log.INFO
+                    Level.DEBUG -> android.util.Log.DEBUG
+                    Level.ERROR -> android.util.Log.ERROR
+                    Level.NONE -> android.util.Log.VERBOSE
+                    Level.WARNING -> android.util.Log.WARN
+                }
             Timber.log(newLevel, msg)
         }
     }

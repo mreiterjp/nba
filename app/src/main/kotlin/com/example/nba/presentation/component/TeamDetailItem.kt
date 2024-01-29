@@ -17,18 +17,20 @@ import com.example.nba.domain.entity.TeamEntity
 @Composable
 fun TeamDetailItem(
     team: TeamEntity,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colors.background)
-            .padding(8.dp),
-        ) {
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colors.background)
+                .padding(8.dp),
+    ) {
         Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
+            modifier =
+                Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
         ) {
             Text(
                 text = "Team: ${team.fullName} (${team.abbreviation})",
@@ -36,22 +38,21 @@ fun TeamDetailItem(
             )
             Text(
                 text = "City: ${team.city}",
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.subtitle2,
             )
             Text(
                 text = "${team.conference}/${team.division}",
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.subtitle2,
             )
         }
-
     }
 }
 
 @Preview
 @Composable
 fun PreviewTeamDetailItem() {
-    TeamDetailItem(team = TeamEntity.generateFakeTeamEntity(1),
-        onClick = {}
+    TeamDetailItem(
+        team = TeamEntity.generateFakeTeamEntity(1),
+        onClick = {},
     )
 }
-

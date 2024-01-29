@@ -7,12 +7,13 @@ import org.koin.dsl.module
 /**
  * Koin module holding repositories
  */
-val repositoryModule = module {
-    single {
-        PlayerRepository(playerApi = get())
-    }
+val repositoryModule =
+    module {
+        single {
+            PlayerRepository(playerApi = get())
+        }
 
-    single {
-        TeamRepository(teamApi = get())
+        single {
+            TeamRepository(teamApi = get())
+        }
     }
-}

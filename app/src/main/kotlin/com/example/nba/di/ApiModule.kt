@@ -9,7 +9,8 @@ import retrofit2.create
 /**
  * Koin module holding API definitions.
  */
-val apiModule = module {
-    single<PlayerApi> { get<Retrofit>().create() }
-    single<TeamApi> { get<Retrofit>().create() }
-}
+val apiModule =
+    module {
+        single<PlayerApi> { get<Retrofit>().create() }
+        single<TeamApi> { get<Retrofit>().create() }
+    }

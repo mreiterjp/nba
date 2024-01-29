@@ -21,14 +21,13 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun PlayersScreen(
     viewModel: PlayersViewModel = koinViewModel(),
-    navController: NavController
+    navController: NavController,
 ) {
-
     val playerPagingItems: LazyPagingItems<PlayerEntity> =
         viewModel.playersState.collectAsLazyPagingItems()
 
     LazyColumn(
-        modifier = Modifier
+        modifier = Modifier,
     ) {
         item { Spacer(modifier = Modifier.padding(4.dp)) }
         items(playerPagingItems.itemCount) { index ->
@@ -37,7 +36,7 @@ fun PlayersScreen(
                 player = player,
                 onClick = {
                     navController.navigate(NbaScreen.Player.name + "/${player.id}")
-                }
+                },
             )
         }
         playerPagingItems.apply {
@@ -52,7 +51,8 @@ fun PlayersScreen(
                         ErrorMessage(
                             modifier = Modifier.fillParentMaxSize(),
                             message = error.error.localizedMessage ?: "Unknown error",
-                            onClickRetry = { retry() })
+                            onClickRetry = { retry() },
+                        )
                     }
                 }
 
@@ -66,7 +66,8 @@ fun PlayersScreen(
                         ErrorMessage(
                             modifier = Modifier,
                             message = error.error.localizedMessage ?: "Unknown error",
-                            onClickRetry = { retry() })
+                            onClickRetry = { retry() },
+                        )
                     }
                 }
             }

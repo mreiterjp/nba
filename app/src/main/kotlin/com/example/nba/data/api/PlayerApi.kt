@@ -19,4 +19,3 @@ interface PlayerApi {
         @Path("id") id: Int = 0,
     ): Player
 }
-

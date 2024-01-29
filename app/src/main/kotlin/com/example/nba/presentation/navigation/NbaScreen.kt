@@ -27,10 +27,14 @@ import org.koin.core.parameter.parametersOf
 /**
  * enum values that represent the screens in the app
  */
-enum class NbaScreen(@StringRes val title: Int, val route: String) {
+enum class NbaScreen(
+    @StringRes val title: Int,
+    val route: String,
+) {
     Player(title = R.string.player_detail, route = "player/{playerId}"),
     Players(title = R.string.players_list, route = "players"),
-    Team(title = R.string.team_detail, route = "team/{teamId}");
+    Team(title = R.string.team_detail, route = "team/{teamId}"),
+    ;
 
     companion object {
         fun findNbaScreenFromRoute(route: String): NbaScreen {
@@ -45,61 +49,62 @@ enum class NbaScreen(@StringRes val title: Int, val route: String) {
 }
 
 @Composable
-fun NbaApp(
-    navController: NavHostController = rememberNavController()
-) {
+fun NbaApp(navController: NavHostController = rememberNavController()) {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
     // Get the name of the current screen
-    val currentScreen = NbaScreen.findNbaScreenFromRoute(
-        backStackEntry?.destination?.route ?: NbaScreen.Players.route
-    )
+    val currentScreen =
+        NbaScreen.findNbaScreenFromRoute(
+            backStackEntry?.destination?.route ?: NbaScreen.Players.route,
+        )
 
     Scaffold(
         topBar = {
             NbaAppBar(
                 currentScreen = currentScreen,
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = { navController.navigateUp() },
             )
-        }
+        },
     ) { innerPadding ->
 
         NavHost(
             navController = navController,
             startDestination = NbaScreen.Players.route,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
         ) {
             composable(route = NbaScreen.Players.route) {
                 PlayersScreen(navController = navController)
             }
             composable(
                 route = NbaScreen.Player.route,
-                arguments = listOf(navArgument("playerId") { type = NavType.IntType })
+                arguments = listOf(navArgument("playerId") { type = NavType.IntType }),
             ) { backStackEntry ->
                 val playerId = backStackEntry.arguments?.getInt("playerId") ?: -1
                 PlayerScreen(
                     navController = navController,
-                    viewModel = koinViewModel<PlayerViewModel>(
-                        parameters = { parametersOf(playerId) }
-                    )
+                    viewModel =
+                        koinViewModel<PlayerViewModel>(
+                            parameters = { parametersOf(playerId) },
+                        ),
                 )
             }
             composable(
                 route = NbaScreen.Team.route,
-                arguments = listOf(navArgument("teamId") { type = NavType.IntType })
+                arguments = listOf(navArgument("teamId") { type = NavType.IntType }),
             ) { backStackEntry ->
                 val teamId = backStackEntry.arguments?.getInt("teamId")
                 TeamScreen(
                     navController = navController,
-                    viewModel = koinViewModel<TeamViewModel>(
-                        parameters = { parametersOf(teamId) }
-                    )
+                    viewModel =
+                        koinViewModel<TeamViewModel>(
+                            parameters = { parametersOf(teamId) },
+                        ),
                 )
             }
         }
     }
 }
-

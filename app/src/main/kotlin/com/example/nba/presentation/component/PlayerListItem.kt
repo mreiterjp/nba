@@ -32,56 +32,62 @@ import com.example.nba.domain.entity.PlayerEntity
 @Composable
 fun PlayerListItem(
     player: PlayerEntity,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Card(
-        modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .clickable { onClick() },
+        modifier =
+            Modifier
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onSecondary
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
-        )
+        colors =
+            CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.onSecondary,
+            ),
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = 8.dp,
+            ),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .background(Color.White)
-                .fillMaxWidth()
-                .padding(8.dp),
-
-            ) {
+            modifier =
+                Modifier
+                    .background(Color.White)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+        ) {
             GlideImage(
                 model = player.avatarUrl,
                 contentDescription = player.firstName + " " + player.lastName,
                 loading = placeholder(R.drawable.ic_avatar_placeholder),
                 failure = placeholder(R.drawable.ic_avatar_placeholder),
                 transition = CrossFade,
-                modifier = Modifier.size(60.dp)
+                modifier = Modifier.size(60.dp),
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
                 Text(
                     text = "${player.firstName} ${player.lastName}",
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        color = Color.Black
-                    ),
+                    style =
+                        MaterialTheme.typography.bodyLarge.copy(
+                            color = Color.Black,
+                        ),
                 )
                 Text(
                     text = "Position: ${player.position}",
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        color = Color.Black
-                    )
+                    style =
+                        MaterialTheme.typography.bodyMedium.copy(
+                            color = Color.Black,
+                        ),
                 )
                 Text(
-                    text = "Team: ${player.teamEntity?.name?:""}",
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        color = Color.Black
-                    )
+                    text = "Team: ${player.teamEntity?.name ?: ""}",
+                    style =
+                        MaterialTheme.typography.bodyMedium.copy(
+                            color = Color.Black,
+                        ),
                 )
             }
         }
@@ -91,8 +97,8 @@ fun PlayerListItem(
 @Preview
 @Composable
 fun PreviewPlayerListItem() {
-    PlayerListItem(player = PlayerEntity.generateFakePlayerEntity(),
-        onClick = {}
+    PlayerListItem(
+        player = PlayerEntity.generateFakePlayerEntity(),
+        onClick = {},
     )
 }
-

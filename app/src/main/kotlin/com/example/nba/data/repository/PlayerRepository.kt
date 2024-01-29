@@ -15,23 +15,23 @@ import kotlinx.coroutines.flow.flow
  * The PlayerRepository class is be responsible for retrieving paginated NBA player data from the data layer.
  */
 class PlayerRepository(private val playerApi: PlayerApi) : IPlayerRepository {
-
     override suspend fun getPlayers(): Flow<PagingData<PlayerEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = ITEMS_PER_PAGE,
-                prefetchDistance = 2
-            ),
+            config =
+                PagingConfig(
+                    pageSize = ITEMS_PER_PAGE,
+                    prefetchDistance = 2,
+                ),
             pagingSourceFactory = {
                 PlayerPagingSource(playerApi)
-            }
+            },
         ).flow
     }
 
     override suspend fun getPlayer(id: Int): Flow<PlayerEntity> {
         return flow {
             emit(
-                playerApi.getPlayer(id).toEntity()
+                playerApi.getPlayer(id).toEntity(),
             )
         }
     }

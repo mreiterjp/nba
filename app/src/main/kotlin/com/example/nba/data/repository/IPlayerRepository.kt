@@ -6,5 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface IPlayerRepository {
     suspend fun getPlayers(): Flow<PagingData<PlayerEntity>>
+
     suspend fun getPlayer(id: Int): Flow<PlayerEntity>
 }

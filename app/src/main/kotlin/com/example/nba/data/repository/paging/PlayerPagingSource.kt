@@ -10,16 +10,17 @@ import java.io.IOException
 
 class PlayerPagingSource(private val playerApi: PlayerApi) : PagingSource<Int, PlayerEntity>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlayerEntity> {
-       return try {
-           val page = params.key ?: 1
+        return try {
+            val page = params.key ?: 1
             val response = playerApi.getPlayers(page, params.loadSize).players
-            val items: List<PlayerEntity> = response.map { player ->
-                player.toEntity()
-            }
+            val items: List<PlayerEntity> =
+                response.map { player ->
+                    player.toEntity()
+                }
             LoadResult.Page(
                 data = items,
                 prevKey = if (page == 1) null else page - 1,
-                nextKey = if (items.isEmpty()) null else page + 1
+                nextKey = if (items.isEmpty()) null else page + 1,
             )
         } catch (exception: IOException) {
             LoadResult.Error(exception)

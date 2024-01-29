@@ -1,21 +1,20 @@
 package com.example.nba.data.model
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Team(
-     @SerializedName("id")
+    @SerializedName("id")
     val id: Int,
-     @SerializedName("abbreviation")
+    @SerializedName("abbreviation")
     val abbreviation: String,
-     @SerializedName("city")
+    @SerializedName("city")
     val city: String,
-     @SerializedName("conference")
+    @SerializedName("conference")
     val conference: String,
-     @SerializedName("division")
+    @SerializedName("division")
     val division: String,
-     @SerializedName("full_name")
+    @SerializedName("full_name")
     val fullName: String,
-     @SerializedName("name")
+    @SerializedName("name")
     val name: String,
 )

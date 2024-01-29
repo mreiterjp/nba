@@ -23,17 +23,18 @@ data class PlayerEntity(
 
         fun generateFakePlayerEntity(playerId: Int? = null): PlayerEntity {
             val id = playerId ?: Random.nextInt(1, 1000)
-            val playerEntity = PlayerEntity(
-                id = id,
-                firstName = "Name $id",
-                lastName = "Surname $id",
-                position = listOf("F", "G", "C").random(),
-                heightFeet = Random.nextInt(5, 8),
-                heightInches = Random.nextInt(0, 12),
-                weightPounds = Random.nextInt(150, 250),
-                teamEntity = TeamEntity.generateFakeTeamEntity(id),
-                avatarUrl = getAvatarUrl(id),
-            )
+            val playerEntity =
+                PlayerEntity(
+                    id = id,
+                    firstName = "Name $id",
+                    lastName = "Surname $id",
+                    position = listOf("F", "G", "C").random(),
+                    heightFeet = Random.nextInt(5, 8),
+                    heightInches = Random.nextInt(0, 12),
+                    weightPounds = Random.nextInt(150, 250),
+                    teamEntity = TeamEntity.generateFakeTeamEntity(id),
+                    avatarUrl = getAvatarUrl(id),
+                )
             Timber.d("FakePlayer: $playerEntity")
             return playerEntity
         }
@@ -43,13 +44,13 @@ data class PlayerEntity(
 fun Player.toEntity(): PlayerEntity {
     return PlayerEntity(
         id = this.id,
-        firstName = this.firstName?:"",
-        lastName = this.lastName?:"",
-        position = this.position?:"",
-        heightFeet = this.heightFeet?:0,
-        heightInches = this.heightInches?:0,
-        weightPounds = this.weightPounds?:0,
+        firstName = this.firstName ?: "",
+        lastName = this.lastName ?: "",
+        position = this.position ?: "",
+        heightFeet = this.heightFeet ?: 0,
+        heightInches = this.heightInches ?: 0,
+        weightPounds = this.weightPounds ?: 0,
         avatarUrl = getAvatarUrl(this.id),
-        teamEntity = team?.toEntity()
+        teamEntity = team?.toEntity(),
     )
 }
