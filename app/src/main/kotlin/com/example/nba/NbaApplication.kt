@@ -1,11 +1,13 @@
 package com.example.nba
 
 import android.app.Application
+import com.example.nba.common.GlobalResponseOperator
 import com.example.nba.di.apiModule
 import com.example.nba.di.networkingModule
 import com.example.nba.di.repositoryModule
 import com.example.nba.di.useCaseModule
 import com.example.nba.di.viewModelModule
+import com.skydoves.sandwich.SandwichInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinApplication
 import org.koin.core.annotation.KoinInternalApi
@@ -22,6 +24,9 @@ import timber.log.Timber
 class NbaApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
+        // initialize global sandwich operator
+        SandwichInitializer.sandwichOperators = mutableListOf(GlobalResponseOperator<Any>(this))
         // initialize Koin
         startKoin {
             timberLogger()

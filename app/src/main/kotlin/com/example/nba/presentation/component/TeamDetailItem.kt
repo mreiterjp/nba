@@ -28,17 +28,17 @@ fun TeamDetailItem(
     // Create a full-width box to wrap the team's information
     Box(
         modifier =
-            Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colors.background)
-                .padding(8.dp),
+        Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.background)
+            .padding(8.dp),
     ) {
         // Create a centered column to arrange the team's information
         Column(
             modifier =
-                Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
+            Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
         ) {
             // Display the team's full name and abbreviation
             Text(

@@ -1,8 +1,12 @@
 package com.example.nba.presentation.view.team.detail
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.nba.presentation.component.PageLoader
 import com.example.nba.presentation.component.TeamDetailItem
 
 /**
@@ -17,12 +21,19 @@ fun TeamScreen(
     viewModel: TeamViewModel,
 ) {
     // Extract the team from the view model's state flow
-    val team = viewModel.teamState.collectAsState().value
-
-    // Display the team's detail item
-    TeamDetailItem(
-        team,
-        // No action needed when the team is clicked
-        {},
-    )
+    val team = viewModel.teamState.collectAsStateWithLifecycle().value
+    Column(
+        modifier = Modifier,
+    ) {
+        if (team != null) {
+            // Display the team's detail item
+            TeamDetailItem(
+                team,
+                // No action needed yet, when the team is clicked
+                {},
+            )
+        } else {
+            PageLoader(modifier = Modifier.fillMaxSize())
+        }
+    }
 }

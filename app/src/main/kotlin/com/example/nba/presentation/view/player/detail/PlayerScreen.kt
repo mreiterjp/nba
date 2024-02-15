@@ -1,8 +1,12 @@
 package com.example.nba.presentation.view.player.detail
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.nba.presentation.component.PageLoader
 import com.example.nba.presentation.component.PlayerDetailItem
 import com.example.nba.presentation.navigation.NbaScreen
 
@@ -18,12 +22,20 @@ fun PlayerScreen(
     viewModel: PlayerViewModel,
 ) {
     // Extract the player from the view model's state flow
-    val player = viewModel.playerState.collectAsState().value
+    val player = viewModel.playerState.collectAsStateWithLifecycle().value
 
-    // Display the player's detail item
-    PlayerDetailItem(
-        player,
-        // Navigate to the team screen when the player's team is clicked
-        { navController.navigate(NbaScreen.Team.name + "/${player.teamEntity?.id ?: -1}") },
-    )
+    Column(
+        modifier = Modifier,
+    ) {
+        if (player != null) {
+            // Display the player's detail item
+            PlayerDetailItem(
+                player,
+            )
+            // Navigate to the team screen when the player's team is clicked
+            { navController.navigate(NbaScreen.Team.name + "/${player.teamEntity?.id ?: -1}") }
+        } else {
+            PageLoader(modifier = Modifier.fillMaxSize())
+        }
+    }
 }

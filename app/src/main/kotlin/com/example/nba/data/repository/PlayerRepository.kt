@@ -8,6 +8,7 @@ import com.example.nba.data.api.PlayerApi
 import com.example.nba.data.repository.paging.PlayerPagingSource
 import com.example.nba.domain.entity.PlayerEntity
 import com.example.nba.domain.entity.toEntity
+import com.skydoves.sandwich.onSuccess
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -26,10 +27,10 @@ class PlayerRepository(private val playerApi: PlayerApi) : IPlayerRepository {
         return Pager(
             // Configure the Paging library
             config =
-                PagingConfig(
-                    pageSize = ITEMS_PER_PAGE, // Number of items per page
-                    prefetchDistance = 2, // Number of pages to pre-fetch
-                ),
+            PagingConfig(
+                pageSize = ITEMS_PER_PAGE, // Number of items per page
+                prefetchDistance = 2, // Number of pages to pre-fetch
+            ),
             // Create a paging source factory that generates the `PlayerPagingSource`
             pagingSourceFactory = {
                 PlayerPagingSource(playerApi)
@@ -43,14 +44,15 @@ class PlayerRepository(private val playerApi: PlayerApi) : IPlayerRepository {
      * @param id The ID of the player to retrieve.
      * @return A `Flow` object emitting the corresponding `PlayerEntity` object.
      */
-    override suspend fun getPlayer(id: Int): Flow<PlayerEntity> {
+    override suspend fun getPlayer(id: Int): Flow<PlayerEntity?> {
         return flow {
             // Fetch the player from the API for the specified ID
             val response = playerApi.getPlayer(id)
-
+            var playerEntity: PlayerEntity? = null
             // Convert the API response to a `PlayerEntity` object
-            val playerEntity = response.toEntity()
-
+            response.onSuccess {
+                playerEntity = data.toEntity()
+            }
             emit(playerEntity)
         }
     }

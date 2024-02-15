@@ -19,12 +19,12 @@ class PlayerViewModel(
     /**
      * A private mutable state flow that stores the player's most recent information.
      */
-    private val playerStateInternal = MutableStateFlow(value = PlayerEntity.generateFakePlayerEntity(-1))
+    private val playerStateInternal = MutableStateFlow<PlayerEntity?>(null)
 
     /**
      * An observable state flow that is externally exposed to represent the player's most recent information.
      */
-    val playerState: MutableStateFlow<PlayerEntity> get() = playerStateInternal
+    val playerState: MutableStateFlow<PlayerEntity?> get() = playerStateInternal
 
     /**
      * Initializes the view model by fetching the player's data from the API.
@@ -56,7 +56,9 @@ class PlayerViewModel(
     private suspend fun getPlayer(id: Int) {
         getPlayerUseCase(id)
             .collect {
-                playerStateInternal.value = it
+                it?.let {
+                    playerStateInternal.value = it
+                }
             }
     }
 }

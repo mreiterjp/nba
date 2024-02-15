@@ -43,28 +43,28 @@ fun PlayerListItem(
     // Create a card to wrap the player's information
     Card(
         modifier =
-            Modifier
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .clickable { onClick() },
+        Modifier
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
         colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.onSecondary,
-            ),
+        CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.onSecondary,
+        ),
         elevation =
-            CardDefaults.cardElevation(
-                defaultElevation = 8.dp,
-            ),
+        CardDefaults.cardElevation(
+            defaultElevation = 8.dp,
+        ),
     ) {
         // Create a row to arrange the player's avatar and information
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier =
-                Modifier
-                    .background(Color.White)
-                    .fillMaxWidth()
-                    .padding(8.dp),
+            Modifier
+                .background(Color.White)
+                .fillMaxWidth()
+                .padding(8.dp),
         ) {
             // Display the player's avatar
             GlideImage(
@@ -83,28 +83,28 @@ fun PlayerListItem(
                 Text(
                     text = "${player.firstName} ${player.lastName}",
                     style =
-                        MaterialTheme.typography.bodyLarge.copy(
-                            color = Color.Black,
-                        ),
+                    MaterialTheme.typography.bodyLarge.copy(
+                        color = Color.Black,
+                    ),
                 )
 
                 // Display the player's position
                 Text(
                     text = "Position: ${player.position}",
                     style =
-                        MaterialTheme.typography.bodyMedium.copy(
-                            color = Color.Black,
-                        ),
+                    MaterialTheme.typography.bodyMedium.copy(
+                        color = Color.Black,
+                    ),
                 )
 
                 // Display the player's team name if it exists
                 if (player.teamEntity != null) {
                     Text(
-                        text = "Team: ${player.teamEntity?.name ?: ""}",
+                        text = "Team: ${player.teamEntity.name ?: ""}",
                         style =
-                            MaterialTheme.typography.bodyMedium.copy(
-                                color = Color.Black,
-                            ),
+                        MaterialTheme.typography.bodyMedium.copy(
+                            color = Color.Black,
+                        ),
                     )
                 }
             }

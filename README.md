@@ -22,8 +22,11 @@ To obtain information about the players, it is advisable to use https://app.ball
 - Processes images in Glide, other libraries/APIs for obtaining random images can be used at your own
 discretion. (e.g., https://picsum.photos/)
 
+## Random notes
+
+- Error handling - https://skydoves.github.io/sandwich/retrofit/
+
 ## To Be Added
 
 - App theme
 - Proper image source for teams
-- Proper Error handling

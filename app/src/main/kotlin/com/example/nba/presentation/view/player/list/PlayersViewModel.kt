@@ -21,12 +21,13 @@ class PlayersViewModel(
     /**
      * Internal state flow that holds the latest list of players.
      */
-    private val playersStateInternal = MutableStateFlow<PagingData<PlayerEntity>>(PagingData.empty())
+    private val playersStateInternal =
+        MutableStateFlow<PagingData<PlayerEntity>>(PagingData.empty())
 
     /**
      * Observable state flow that provides the latest list of players.
      */
-    public val playersState: MutableStateFlow<PagingData<PlayerEntity>> get() = playersStateInternal
+    val playersState: MutableStateFlow<PagingData<PlayerEntity>> get() = playersStateInternal
 
     /**
      * Initializes the view model by fetching the list of players.

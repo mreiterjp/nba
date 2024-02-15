@@ -16,7 +16,7 @@ class GetTeamUseCase(private val teamRepository: TeamRepository) {
      * @param id The ID of the team to retrieve.
      * @return A `Flow` of `TeamEntity` objects containing the team data.
      */
-    suspend operator fun invoke(id: Int): Flow<TeamEntity> {
+    suspend operator fun invoke(id: Int): Flow<TeamEntity?> {
         return teamRepository.getTeam(id)
     }
 }

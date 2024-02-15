@@ -36,10 +36,10 @@ fun PlayerDetailItem(
     // Create a column layout to arrange the player's information
     Column(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .padding(8.dp),
+        Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(8.dp),
     ) {
         // Display the player's full name
         Text(
@@ -51,8 +51,8 @@ fun PlayerDetailItem(
         Row(
             // Align the avatar and additional information vertically
             modifier =
-                Modifier
-                    .fillMaxWidth(),
+            Modifier
+                .fillMaxWidth(),
         ) {
             // Display the player's avatar
             GlideImage(
@@ -90,15 +90,15 @@ fun PlayerDetailItem(
                     Text(
                         text = "Team: ${player.teamEntity.name}",
                         style =
-                            MaterialTheme.typography.bodyLarge.copy(
-                                textDecoration = TextDecoration.Underline,
-                                color = MaterialTheme.colorScheme.primary,
-                            ),
+                        MaterialTheme.typography.bodyLarge.copy(
+                            textDecoration = TextDecoration.Underline,
+                            color = MaterialTheme.colorScheme.primary,
+                        ),
                         modifier =
-                            Modifier
-                                .clickable {
-                                    onClick()
-                                },
+                        Modifier
+                            .clickable {
+                                onClick()
+                            },
                     )
                 }
             }

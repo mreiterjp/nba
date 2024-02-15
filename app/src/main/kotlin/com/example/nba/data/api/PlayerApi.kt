@@ -3,6 +3,7 @@ package com.example.nba.data.api
 import com.example.nba.common.Constants.ITEMS_PER_PAGE
 import com.example.nba.data.model.Player
 import com.example.nba.data.model.Players
+import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -33,5 +34,5 @@ interface PlayerApi {
     @GET("players/{id}")
     suspend fun getPlayer(
         @Path("id") id: Int = 0,
-    ): Player
+    ): ApiResponse<Player>
 }

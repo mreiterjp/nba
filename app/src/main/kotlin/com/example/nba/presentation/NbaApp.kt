@@ -52,9 +52,9 @@ fun NbaApp(navController: NavHostController = rememberNavController()) {
             navController = navController,
             startDestination = NbaScreen.Players.route,
             modifier =
-                Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
         ) {
             composable(route = NbaScreen.Players.route) {
                 PlayersScreen(navController = navController)
@@ -67,9 +67,9 @@ fun NbaApp(navController: NavHostController = rememberNavController()) {
                 PlayerScreen(
                     navController = navController,
                     viewModel =
-                        koinViewModel<PlayerViewModel>(
-                            parameters = { parametersOf(playerId) },
-                        ),
+                    koinViewModel<PlayerViewModel>(
+                        parameters = { parametersOf(playerId) },
+                    ),
                 )
             }
             composable(
@@ -80,9 +80,9 @@ fun NbaApp(navController: NavHostController = rememberNavController()) {
                 TeamScreen(
                     navController = navController,
                     viewModel =
-                        koinViewModel<TeamViewModel>(
-                            parameters = { parametersOf(teamId) },
-                        ),
+                    koinViewModel<TeamViewModel>(
+                        parameters = { parametersOf(teamId) },
+                    ),
                 )
             }
         }

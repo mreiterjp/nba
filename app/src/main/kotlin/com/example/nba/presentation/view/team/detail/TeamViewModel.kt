@@ -20,12 +20,12 @@ class TeamViewModel(
     /**
      * A private mutable state flow that stores the team's most recent information.
      */
-    private val teamStateInternal = MutableStateFlow(value = TeamEntity.generateFakeTeamEntity(-1))
+    private val teamStateInternal = MutableStateFlow<TeamEntity?>(value = null)
 
     /**
      * An observable state flow that is externally exposed to represent the team's most recent information.
      */
-    val teamState: MutableStateFlow<TeamEntity> get() = teamStateInternal
+    val teamState: MutableStateFlow<TeamEntity?> get() = teamStateInternal
 
     /**
      * Initializes the view model by fetching the team's data from the API.
@@ -57,7 +57,9 @@ class TeamViewModel(
     private suspend fun getTeam(id: Int) {
         getTeamUseCase(id)
             .collect {
-                teamStateInternal.value = it
+                it?.let {
+                    teamStateInternal.value = it
+                }
             }
     }
 }

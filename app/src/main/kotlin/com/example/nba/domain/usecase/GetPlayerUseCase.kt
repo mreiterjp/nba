@@ -16,7 +16,7 @@ class GetPlayerUseCase(private val playerRepository: PlayerRepository) {
      * @param id The ID of the player to retrieve.
      * @return A `Flow` of `PlayerEntity` objects containing the player data.
      */
-    suspend operator fun invoke(id: Int): Flow<PlayerEntity> {
+    suspend operator fun invoke(id: Int): Flow<PlayerEntity?> {
         return playerRepository.getPlayer(id)
     }
 }
